@@ -1,5 +1,11 @@
 import * as cheerio from 'cheerio';
-import { OrderedItem, ContentTitle, ContentCode, Content } from './interface';
+import {
+  OrderedItem,
+  ContentTitle,
+  ContentCode,
+  DBConditions,
+  DBConfig
+} from './interface';
 import { fetchWithProxy, fetchWithoutProxy } from '../../../lib/fetch';
 import { TARGET } from '../../../lib/constants';
 import HgModel from '../../../models/hg';
@@ -291,22 +297,28 @@ export const savePosts = (categories: object[], issue: string) => {
 };
 
 // 从数据库获取内容
-export const getCategoriesFromDB = async (issue: string) => {
+export const getCategoriesFromDB = async (issue?: string) => {
+  const conditions: DBConditions = {};
+  if (issue) conditions.issue = issue; // 如果有 issue 传入，则查询该期内容
+
+  const config: DBConfig = {
+    _id: false,
+    category: true,
+    content: true
+  };
+
+  if (!issue) config.issue = true; // 如果没有 issue 传入，表示查询全部，每条数据都需要显示对应 issue
+
   // 展示所有记录
-  const categories = await HgModel.find(
-    { issue },
-    {
-      _id: false,
-      category: true,
-      content: true
-    }
-  );
+  const categories = await HgModel.find(conditions, config);
 
   const result = categories.map(item => {
     const post = {
       category: item['category'].toUpperCase(),
       content: item['content']
     };
+
+    if (!issue) post['issue'] = item['issue']; // 如果没有 issue 传入，表示查询全部，每条数据都需要显示对应 issue
 
     return post;
   });

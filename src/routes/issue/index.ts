@@ -4,7 +4,8 @@ import {
   getRandomIssue,
   getDirectIssue,
   getDirectIssueCounts,
-  getDirectRandomIssue
+  getDirectRandomIssue,
+  getAllIssues
 } from './controller';
 
 const Router = (Router: any) => {
@@ -13,6 +14,7 @@ const Router = (Router: any) => {
   });
 
   router
+    .get('/', getAllIssues)
     .get('/counts', getIssueCounts)
     .get('/random', getRandomIssue)
     .get('/:id', getIssue)

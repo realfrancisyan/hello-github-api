@@ -46,6 +46,17 @@ export const getIssueCounts = async (ctx: any) => {
   ctx.body = respond(counts);
 };
 
+// 获取所有内容
+export const getAllIssues = async (ctx: any) => {
+  const categories = await getCategoriesFromDB();
+
+  const result = {
+    issue: 'all',
+    body: categories
+  };
+  ctx.body = respond(result);
+};
+
 /**
  * 以下是直接爬取，不读取数据库
  * direct
