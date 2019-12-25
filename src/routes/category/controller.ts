@@ -1,29 +1,36 @@
 import { respond } from '../../lib/respond';
-import HgModel from '../../models/hg';
+import { _getCategory } from './lib/funcs';
 
 // 获取某个分类下所有内容
 export const getCategory = async (ctx: any) => {
   let { name } = ctx.params; // 分类名称
 
-  const categories = await HgModel.find(
-    { category: name },
-    {
-      _id: false,
-      category: true,
-      content: true,
-      issue: true
-    }
-  );
+  const posts = await _getCategory(name);
 
-  const result = categories.map(item => {
-    const post = {
-      issue: item['issue'],
-      category: item['category'].toUpperCase(),
-      content: item['content']
-    };
+  const result = {
+    category: name.toUpperCase(),
+    content: posts
+  };
 
-    return post;
-  });
+  ctx.body = respond(result);
+};
+
+// 按某一期获取某个分类下所有内容
+export const getCategoryByIssue = async (ctx: any) => {
+  let { name, issue } = ctx.params; // 分类名称
+
+  // 异常处理
+  if (isNaN(issue)) {
+    ctx.body = respond('Issue is invalid.', 401);
+    return;
+  }
+
+  const posts = await _getCategory(name, issue);
+
+  const result = {
+    category: name.toUpperCase(),
+    content: posts
+  };
 
   ctx.body = respond(result);
 };
