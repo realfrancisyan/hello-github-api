@@ -1,0 +1,8 @@
+{
+ "version": 1,
+ "name": "hello-github-api",
+ "alias": "hello-github-api-lamh2rmlw.now.sh",
+ "github": {
+  "silent": true
+ }
+}
