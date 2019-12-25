@@ -11,5 +11,8 @@
    "src": "/(.*)",
    "dest": "public/app.js"
   }
- ]
+ ],
+ "github": {
+  "silent": true
+ }
 }
