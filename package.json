@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -e ts --exec 'ts-node' src/app.ts",
-    "build": "pm2 start app.sh",
-    "stop": "pm2 stop app && pm2 stop ts-node"
+    "build": "tsc && pm2 start public/app.js",
+    "stop": "pm2 stop app"
   },
   "repository": {
     "type": "git",
