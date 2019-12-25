@@ -186,8 +186,8 @@ export const getOrderedContent = (content: []) => {
     }
 
     // 按序列分类
-    // 看是否尽头，尽头就 push
-    // 看下一个是否为标题内容，是就 push
+    // 判断是否尽头，尽头就 push
+    // 判断下一个是否为标题内容，是就 push
     const nextItem = content[index + 1];
     if (
       index === content.length - 1 ||
@@ -301,6 +301,7 @@ export const getCategoriesFromDB = async (issue: string) => {
       content: true
     }
   );
+
   const result = categories.map(item => {
     const post = {
       category: item['category'].toUpperCase(),
