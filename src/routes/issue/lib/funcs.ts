@@ -2,19 +2,9 @@ import * as cheerio from 'cheerio';
 import { OrderedItem, ContentTitle, ContentCode, Content } from './interface';
 import { fetchWithProxy, fetchWithoutProxy } from '../../../lib/fetch';
 import { TARGET } from '../../../lib/constants';
-import { mongoose, hg } from '../../../config/db';
+import HgModel from '../../../models/hg';
 import * as crypto from 'crypto';
 import * as moment from 'moment';
-
-const hgSchema = new mongoose.Schema({
-  id: String,
-  category: String,
-  content: Array,
-  issue: Number,
-  createdAt: String
-});
-
-const HgModel = hg.model('posts', hgSchema);
 
 // 提取代码块
 const getCodeBlock = ($item: Cheerio, isRaw: boolean = false) => {
@@ -232,6 +222,15 @@ export const _getIssueCounts = async () => {
   return lastIssue;
 };
 
+// 获取所有期数（从数据库读取）
+export const _getIssueCountsFromDB = async () => {
+  const config = { _id: false, issue: true };
+  const result = await HgModel.findOne({}, config).sort({ _id: -1 });
+
+  const lastIssue = result['issue'];
+  return lastIssue;
+};
+
 // 获取某期内容
 export const _getIssue = async (id: string) => {
   id = id.padStart(2, '0'); // 填充 0，如 1 => 01
@@ -265,13 +264,14 @@ export const _getIssue = async (id: string) => {
 };
 
 // 保存文章内容
-export const savePosts = (categories: object[], issue: number) => {
-  return new Promise(resolve => {
-    categories.forEach(async (item: Content) => {
+export const savePosts = (categories: object[], issue: string) => {
+  return new Promise(async resolve => {
+    for (let item of categories) {
       const contentId = crypto.randomBytes(10).toString('hex'); // 生成唯一 id
       const createdAt = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 
-      const { category, content } = item;
+      const newItem = JSON.parse(JSON.stringify(item));
+      const { category, content } = newItem;
 
       const post = {
         id: contentId,
@@ -284,22 +284,27 @@ export const savePosts = (categories: object[], issue: number) => {
       // 保存
       const newPost = new HgModel(post);
       await newPost.save();
+    }
 
-      resolve();
-    });
+    resolve();
   });
 };
 
 // 从数据库获取内容
-export const getCategoriesFromDB = async (issue: number) => {
+export const getCategoriesFromDB = async (issue: string) => {
   // 展示所有记录
-  const categories = await HgModel.find({ issue });
+  const categories = await HgModel.find(
+    { issue },
+    {
+      _id: false,
+      category: true,
+      content: true
+    }
+  );
   const result = categories.map(item => {
-    const newItem = JSON.parse(JSON.stringify(item));
-    const { category, content } = newItem;
     const post = {
-      category: category.toUpperCase(),
-      content
+      category: item['category'].toUpperCase(),
+      content: item['content']
     };
 
     return post;
@@ -308,18 +313,19 @@ export const getCategoriesFromDB = async (issue: number) => {
   return result;
 };
 
-export const getAndLoopCategories = async () => {
-  const getCategories = async (issueId: number) => {
-    const categories = await _getIssue(issueId + '');
+// 遍历所有往期内容，并保存到数据库
+export const getCategoriesAndSave = async () => {
+  const getCategories = async (issueId: string) => {
+    const categories = await _getIssue(issueId);
     await savePosts(categories, issueId);
   };
 
   const timeout = 2000;
 
-  const loop = (issueId: number) => {
+  const loop = (issueId: string) => {
     return new Promise(resolve => {
-      setTimeout(() => {
-        getCategories(issueId);
+      setTimeout(async () => {
+        await getCategories(issueId);
         console.log('iterating ' + issueId + '...');
         resolve();
       }, timeout);
@@ -327,6 +333,9 @@ export const getAndLoopCategories = async () => {
   };
 
   const lastIssueId = 44;
-  const issues = Array.from({ length: lastIssueId }, (v, i) => i + 1);
-  issues.forEach(async issueId => await loop(issueId));
+  const issues = Array.from({ length: lastIssueId }, (v, i) => i + 1 + '');
+
+  for (let issueId of issues) {
+    await loop(issueId);
+  }
 };
