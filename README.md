@@ -15,3 +15,11 @@ npm run prod
 ## 暂停服务
 
 npm run stop
+
+## now
+
+sudo npm install -g now
+
+### deploy
+
+now --prod
