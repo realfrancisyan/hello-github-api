@@ -1,0 +1,4 @@
+node_modules
+
+# db related
+src/config/db/server.ts

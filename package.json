@@ -1,0 +1,47 @@
+{
+  "name": "hello-github-api",
+  "version": "1.0.0",
+  "description": "The unofficial api for HelloGithub",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e ts --exec 'ts-node' src/app.ts",
+    "prod": "pm2 start src/app.js",
+    "stop": "pm2 stop app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realfrancisyan/hello-github-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/realfrancisyan/hello-github-api/issues"
+  },
+  "homepage": "https://github.com/realfrancisyan/hello-github-api#readme",
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "https-proxy-agent": "^4.0.0",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-json": "^2.0.2",
+    "koa-jwt": "^3.6.0",
+    "koa-router": "^7.4.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.7.9",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.15",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-router": "^7.0.42",
+    "@types/koa__cors": "^2.2.3",
+    "@types/mongoose": "^5.5.34",
+    "@types/node-fetch": "^2.5.4",
+    "nodemon": "^1.19.4",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  }
+}
