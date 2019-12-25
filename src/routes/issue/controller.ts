@@ -28,7 +28,7 @@ export const getIssue = async (ctx: any) => {
 
 // 获取随机内容
 export const getRandomIssue = async (ctx: any) => {
-  const counts = await _getIssueCounts(); // 获取期数总数
+  const counts = await _getIssueCountsFromDB(); // 获取期数总数
   const id = getRandomInt(1, counts) + ''; // 获取随机期数
 
   const categories = await getCategoriesFromDB(id);
