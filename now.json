@@ -1,8 +1,15 @@
 {
- "version": 1,
- "name": "hello-github-api",
- "alias": "hello-github-api-lamh2rmlw.now.sh",
- "github": {
-  "silent": true
- }
+ "version": 2,
+ "builds": [
+  {
+   "src": "public/app.js",
+   "use": "@now/node"
+  }
+ ],
+ "routes": [
+  {
+   "src": "/(.*)",
+   "dest": "public/app.js"
+  }
+ ]
 }
