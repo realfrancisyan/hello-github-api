@@ -12,7 +12,7 @@ const getLatestIssue = async () => {
   const latestIssueInDB = await _getIssueCountsFromDB(); // 获取数据库最新一期
 
   const latestIssue = latestIssueInDB + 1 + '';
-  console.log(latestIssue);
+
   // 保存内容
   const categories = await _getIssue(latestIssue);
   await savePosts(categories, latestIssue);
@@ -20,7 +20,7 @@ const getLatestIssue = async () => {
 
 // 定期获取最新一期
 export const scheduleGetLatestIssue = async () => {
-  const rule = { hour: 20, minute: 10 }; // repeat every 28th at 20:10
+  const rule = { hour: 20, minute: 10 }; // repeat every day at 20:10
 
   console.log('init job - get latest issue');
 
