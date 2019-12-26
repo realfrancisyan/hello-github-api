@@ -10,6 +10,6 @@ export const respond = (data: any = '', status = 200) => {
     status,
     message: status === 200 ? responseType.SUCCESS : responseType.FAIL,
     data,
-    time: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
+    time: moment().format('YYYY-MM-DD HH:mm:ss')
   };
 };

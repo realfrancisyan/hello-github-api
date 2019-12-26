@@ -274,7 +274,7 @@ export const savePosts = (categories: object[], issue: string) => {
   return new Promise(async resolve => {
     for (let item of categories) {
       const contentId = crypto.randomBytes(10).toString('hex'); // 生成唯一 id
-      const createdAt = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+      const createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
 
       const newItem = JSON.parse(JSON.stringify(item));
       const { category, content } = newItem;
