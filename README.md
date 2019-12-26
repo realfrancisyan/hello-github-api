@@ -6,7 +6,7 @@
 
 ## API Endpoint
 
-[https://hg.aurahq.com/issue](https://hg.aurahq.com/issue)
+### 1. [https://hg.aurahq.com/issue](https://hg.aurahq.com/issue)
 
 - `/` : 展示往期所有文章
 - `/:id` : 展示指定一期的文章
@@ -57,7 +57,9 @@
 }
 ```
 
-[https://hq.aurahq.com/category](https://hq.aurahq.com/category)
+
+
+### 2. [https://hq.aurahq.com/category](https://hq.aurahq.com/category)
 
 - `/:name` : 展示指定分类的所有内容
 - `/:name/:issue` : 展示指定某一期和某一分类的所有内容
@@ -100,6 +102,8 @@
   "time": "2019-12-26 03:26:36"
 }
 ```
+
+
 
 ## 本地运行
 
