@@ -1,5 +1,5 @@
-const GITHUB_URL = 'github.com';
-const USER = '521xueweihan';
-const REPO = 'HelloGitHub';
+const githubUrl = 'github.com';
+const user = '521xueweihan';
+const repo = 'HelloGitHub';
 
-export const TARGET = `https://${GITHUB_URL}/${USER}/${REPO}`;
+export const target = `https://${githubUrl}/${user}/${repo}`;

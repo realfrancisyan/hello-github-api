@@ -10,9 +10,9 @@ const createConn = (db: string) => {
 };
 
 // db
-const DB_HG = 'helloGithub';
+const dbHelloGithub = 'helloGithub';
 
 // create connection
-const hg = createConn(DB_HG);
+const hg = createConn(dbHelloGithub);
 
 export { mongoose, hg };

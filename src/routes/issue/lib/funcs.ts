@@ -7,7 +7,7 @@ import {
   DBConfig
 } from './interface';
 import { fetchWithProxy, fetchWithoutProxy } from '../../../lib/fetch';
-import { TARGET } from '../../../lib/constants';
+import { target } from '../../../lib/constants';
 import HgModel from '../../../models/hg';
 import * as crypto from 'crypto';
 import * as moment from 'moment';
@@ -210,7 +210,7 @@ export const getOrderedContent = (content: []) => {
 
 // 获取所有期数
 export const _getIssueCounts = async () => {
-  const proxyUrl = `${TARGET}/tree/master/content`;
+  const proxyUrl = `${target}/tree/master/content`;
   const data = await fetchWithoutProxy(proxyUrl);
   const $ = cheerio.load(await data.text());
 
@@ -240,7 +240,7 @@ export const _getIssueCountsFromDB = async () => {
 // 获取某期内容
 export const _getIssue = async (id: string) => {
   id = id.padStart(2, '0'); // 填充 0，如 1 => 01
-  const proxyUrl = `${TARGET}/blob/master/content/${id}/HelloGitHub${id}.md`;
+  const proxyUrl = `${target}/blob/master/content/${id}/HelloGitHub${id}.md`;
   const data = await fetchWithoutProxy(proxyUrl);
   const $ = cheerio.load(await data.text());
 
