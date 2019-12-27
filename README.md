@@ -57,8 +57,6 @@
 }
 ```
 
-
-
 ### 2. [https://hq.aurahq.com/category](https://hq.aurahq.com/category)
 
 - `/:name` : 展示指定分类的所有内容
@@ -79,7 +77,7 @@
     "content": [
       {
         "issue": 7,
-        "content": [
+        "body": [
           {
             "title": {
               "desc": "1、BaiduPCS：C 写的百度网盘命令行工具，在线文档",
@@ -102,8 +100,6 @@
   "time": "2019-12-26 03:26:36"
 }
 ```
-
-
 
 ## 本地运行
 
