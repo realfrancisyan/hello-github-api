@@ -29,7 +29,7 @@ export const getCategoryByIssue = async (ctx: any) => {
 
   const result = {
     category: name.toUpperCase(),
-    content: posts
+    body: posts
   };
 
   ctx.body = respond(result);

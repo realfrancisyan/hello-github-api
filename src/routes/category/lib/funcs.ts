@@ -19,7 +19,7 @@ export const _getCategory = async (name: string, issue?: number) => {
   const posts = categories.map(item => {
     const post = {
       issue: item['issue'],
-      body: item['content']
+      content: item['content']
     };
 
     return post;
