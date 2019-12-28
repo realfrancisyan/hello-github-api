@@ -16,6 +16,8 @@ const getLatestIssue = async () => {
   // 保存内容
   const categories = await _getIssue(latestIssue);
   await savePosts(categories, latestIssue);
+
+  job = null;
 };
 
 // 定期获取最新一期
@@ -26,7 +28,7 @@ export const scheduleGetLatestIssue = async () => {
 
   job = schedule.scheduleJob(rule, async () => {
     console.log('Beginning get latest issue schedule... ' + new Date());
-    getLatestIssue();
+    await getLatestIssue();
   });
 
   console.log('end init job - get latest issue');
