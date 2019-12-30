@@ -18,6 +18,8 @@ const getLatestIssue = async () => {
   await savePosts(categories, latestIssue);
 
   job = null;
+
+  console.log('end! get latest issue schedule... ' + new Date());
 };
 
 // 定期获取最新一期
