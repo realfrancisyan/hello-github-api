@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 
 const responseType = {
   SUCCESS: 'SUCCESS',
@@ -10,6 +10,8 @@ export const respond = (data: any = '', status = 200) => {
     status,
     message: status === 200 ? responseType.SUCCESS : responseType.FAIL,
     data,
-    time: moment().format('YYYY-MM-DD HH:mm:ss')
+    time: moment()
+      .tz('Asia/Beijing')
+      .format('YYYY-MM-DD HH:mm:ss')
   };
 };
