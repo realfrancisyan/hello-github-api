@@ -11,7 +11,7 @@ export const respond = (data: any = '', status = 200) => {
     message: status === 200 ? responseType.SUCCESS : responseType.FAIL,
     data,
     time: moment()
-      .tz('Asia/Beijing')
+      .tz('Asia/Shanghai')
       .format('YYYY-MM-DD HH:mm:ss')
   };
 };
