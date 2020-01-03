@@ -6,7 +6,7 @@
 
 ## API Endpoint
 
-### 1. [https://hg.aurahq.com/issue](https://hg.aurahq.com/issue)
+### 1. [https://hg.auraplayground.com/issue](https://hg.auraplayground.com/issue)
 
 - `/` : 展示往期所有文章
 - `/:id` : 展示指定一期的文章
@@ -23,7 +23,7 @@
 
 展示第 44 期的所有内容
 
-请求 URL：[https://hg.aurahq.com/issue/44](https://hg.aurahq.com/issue/44)
+请求 URL：[https://hg.auraplayground.com/issue/44](https://hg.auraplayground.com/issue/44)
 
 ```json
 {
@@ -57,7 +57,7 @@
 }
 ```
 
-### 2. [https://hq.aurahq.com/category](https://hq.aurahq.com/category)
+### 2. [https://hq.auraplayground.com/category](https://hq.auraplayground.com/category)
 
 - `/:name` : 展示指定分类的所有内容
 - `/:name/:issue` : 展示指定某一期和某一分类的所有内容
@@ -66,7 +66,7 @@
 
 展示第七期的 `C` 分类的所有内容
 
-请求 URL：[https://hg.aurahq.com/category/c/7](https://hg.aurahq.com/category/c/7)
+请求 URL：[https://hg.auraplayground.com/category/c/7](https://hg.auraplayground.com/category/c/7)
 
 ```json
 {
