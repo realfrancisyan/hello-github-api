@@ -3,6 +3,7 @@ import * as json from 'koa-json';
 import * as bodyParser from 'koa-body';
 import applyApiMiddleware from './routes';
 import { scheduleGetLatestIssue } from './tasks';
+import { handleError } from './middleware/error';
 
 const app = new Koa();
 
@@ -12,7 +13,10 @@ const bodyParserConfig = {
   parsedMethods: ['POST', 'PUT', 'PATCH', 'GET', 'DELETE']
 };
 
-app.use(json()).use(bodyParser(bodyParserConfig));
+app
+  .use(json())
+  .use(bodyParser(bodyParserConfig))
+  .use(handleError);
 
 // Router Middleware
 applyApiMiddleware(app);
