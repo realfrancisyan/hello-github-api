@@ -1,8 +1,9 @@
 import { respond } from '../../lib/respond';
 import { _getCategory } from './lib/funcs';
+import * as Koa from 'koa';
 
 // 获取某个分类下所有内容
-export const getCategory = async (ctx: any) => {
+export const getCategory = async (ctx: Koa.Context) => {
   let { name } = ctx.params; // 分类名称
 
   const posts = await _getCategory(name);
@@ -16,7 +17,7 @@ export const getCategory = async (ctx: any) => {
 };
 
 // 按某一期获取某个分类下所有内容
-export const getCategoryByIssue = async (ctx: any) => {
+export const getCategoryByIssue = async (ctx: Koa.Context) => {
   let { name, issue } = ctx.params; // 分类名称
 
   // 异常处理

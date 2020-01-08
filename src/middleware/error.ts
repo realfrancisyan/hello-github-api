@@ -1,4 +1,6 @@
-export const handleError = async (ctx: any, next: Function) => {
+import * as Koa from 'koa';
+
+export const handleError = async (ctx: Koa.Context, next: Function) => {
   try {
     await next();
   } catch (err) {
