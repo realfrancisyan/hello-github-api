@@ -9,6 +9,9 @@
     "prod": "tsc && now --prod",
     "stop": "pm2 stop app"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/realfrancisyan/hello-github-api.git"
