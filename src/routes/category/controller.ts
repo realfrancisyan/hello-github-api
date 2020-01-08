@@ -4,7 +4,7 @@ import * as Koa from 'koa';
 
 // 获取某个分类下所有内容
 export const getCategory = async (ctx: Koa.Context) => {
-  let { name } = ctx.params; // 分类名称
+  const { name } = ctx.params; // 分类名称
 
   const posts = await _getCategory(name);
 
@@ -18,7 +18,7 @@ export const getCategory = async (ctx: Koa.Context) => {
 
 // 按某一期获取某个分类下所有内容
 export const getCategoryByIssue = async (ctx: Koa.Context) => {
-  let { name, issue } = ctx.params; // 分类名称
+  const { name, issue } = ctx.params; // 分类名称
 
   // 异常处理
   if (isNaN(issue)) {
