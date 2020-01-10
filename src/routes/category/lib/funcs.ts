@@ -27,3 +27,8 @@ export const _getCategory = async (name: string, issue?: number) => {
 
   return posts;
 };
+
+export const _getTags = async () => {
+  const tags = await HgModel.distinct('category');
+  return tags;
+};

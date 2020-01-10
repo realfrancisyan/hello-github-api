@@ -1,5 +1,5 @@
 import { respond } from '../../lib/respond';
-import { _getCategory } from './lib/funcs';
+import { _getCategory, _getTags } from './lib/funcs';
 import * as Koa from 'koa';
 
 // 获取某个分类下所有内容
@@ -33,5 +33,11 @@ export const getCategoryByIssue = async (ctx: Koa.Context) => {
     body: posts
   };
 
+  ctx.body = respond(result);
+};
+
+// 获取所有分类标签
+export const getTags = async (ctx: Koa.Context) => {
+  const result = await _getTags();
   ctx.body = respond(result);
 };

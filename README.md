@@ -61,6 +61,30 @@
 
 - `/:name` : 展示指定分类的所有内容
 - `/:name/:issue` : 展示指定某一期和某一分类的所有内容
+- `/tags` : 展示所有分类标签
+
+目前所有分类标签如下：
+
+```
+'css
+'javascript
+'python
+'其它
+'开源书籍
+'go
+java
+php
+c#
+swift
+c
+c++
+objective-c
+ruby
+机器学习
+kotlin
+rust
+教程'
+```
 
 #### 示例
 
