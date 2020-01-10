@@ -8,8 +8,7 @@ import {
 // 获取最新一期
 const getLatestIssue = async () => {
   const latestIssueInDB = await _getIssueCountsFromDB(); // 获取数据库最新一期
-
-  const latestIssue = latestIssueInDB + 1 + '';
+  const latestIssue = `${latestIssueInDB + 1}`;
 
   // 保存内容
   const categories = await _getIssue(latestIssue);
