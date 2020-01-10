@@ -7,8 +7,8 @@ const Router = (Router: any) => {
 
   router
     .get('/tags', getTags)
-    .get('/:name', getCategory)
-    .get('/:name/:issue', getCategoryByIssue);
+    .get('/:tag', getCategory)
+    .get('/:tag/:issue', getCategoryByIssue);
 
   return router;
 };

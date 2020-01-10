@@ -59,8 +59,8 @@
 
 ### 2. [https://hello.curve.to/category](https://hello.curve.to/category)
 
-- `/:name` : 展示指定分类的所有内容
-- `/:name/:issue` : 展示指定某一期和某一分类的所有内容
+- `/:tag` : 展示指定分类的所有内容
+- `/:tag/:issue` : 展示指定某一期和某一分类的所有内容
 - `/tags` : 展示所有分类标签
 
 目前所有分类标签如下：
